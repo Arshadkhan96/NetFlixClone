@@ -1,0 +1,538 @@
+/* ===== GLOBAL STYLES ===== */
+:root {
+  --netflix-red: #e50914;
+  --dark-bg: #141414;
+  --darker-bg: #000;
+  --light-text: #fff;
+  --gray-text: #757575;
+  --card-bg: #2d2d2d;
+  --card-hover: #414141;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--darker-bg);
+  color: var(--light-text);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+/* ===== REUSABLE COMPONENTS ===== */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.25rem;
+  border: none;
+  font-weight: 500;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--netflix-red);
+  color: var(--light-text);
+}
+
+.btn-primary:hover {
+  background-color: #f40612;
+  transform: translateY(-2px);
+}
+
+.input-field {
+  padding: 1.25rem 1rem;
+  width: 100%;
+  border: 1px solid #333;
+  border-radius: 0.25rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: var(--light-text);
+  font-size: 1rem;
+}
+
+.input-field:focus {
+  outline: 1px solid var(--netflix-red);
+}
+
+/* ===== BACKGROUND/HERO SECTION ===== */
+.hero {
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),
+              url('./netfliximg.jpg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 4%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.logo {
+  width: 9rem;
+  height: 2.5rem;
+  background-image: url('./NetflixLogoPMS.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.language-selector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.language-selector select {
+  padding: 0.5rem 1.25rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: var(--light-text);
+  border: 1px solid #333;
+  border-radius: 0.25rem;
+}
+
+.hero-content {
+  margin: auto;
+  text-align: center;
+  padding: 0 2rem;
+  max-width: 50rem;
+  position: relative; /* Add for better stacking context */
+  z-index: 1; /* Ensure content appears above background */
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.signup-form {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+/* ===== TRENDING & UPCOMING SECTIONS ===== */
+.trending-section,
+.upcoming-section {
+  padding: 4rem 4%; /* Increased padding for better spacing */
+  background-color: var(--darker-bg);
+}
+
+.section-title {
+  font-size: 2rem; /* Consistent title size */
+  margin-bottom: 2rem;
+  padding-left: 1rem; /* Align with slider content */
+}
+
+.trending-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 0 1rem; /* Consistent padding */
+}
+
+.filter-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.filter-controls select {
+  padding: 0.5rem 1rem;
+  background-color: var(--darker-bg);
+  color: var(--light-text);
+  border: 1px solid #333;
+  border-radius: 0.25rem;
+}
+
+/* Movie Slider Styles */
+.slider-container {
+  padding: 1rem 0;
+  position: relative;
+}
+
+/* Fix for slick slider dots */
+.slick-dots {
+  bottom: -30px !important;
+}
+
+.slick-dots li button:before {
+  color: var(--light-text) !important;
+  opacity: 0.5 !important;
+}
+
+.slick-dots li.slick-active button:before {
+  color: var(--netflix-red) !important;
+  opacity: 1 !important;
+}
+
+.movie-slide {
+  padding: 0 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.movie-card {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: var(--card-bg);
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.movie-poster {
+  position: relative;
+  aspect-ratio: 2/3;
+}
+
+.movie-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block; /* Remove extra space below image */
+}
+
+.movie-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.movie-card:hover .movie-overlay {
+  opacity: 1;
+}
+
+.play-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+}
+
+.play-button svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+.movie-info {
+  padding: 1rem;
+}
+
+.movie-title {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--gray-text);
+}
+
+/* Loading States */
+.slider-loading {
+  padding: 2rem;
+  text-align: center;
+}
+
+.skeleton-slider {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.skeleton-card {
+  flex: 0 0 calc(20% - 1rem); /* 5 cards per row */
+  aspect-ratio: 2/3;
+  background-color: #333;
+  border-radius: 0.5rem;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.error-message {
+  color: var(--netflix-red);
+  text-align: center;
+  padding: 2rem;
+}
+
+.error-message button {
+  margin-top: 1rem;
+}
+
+/* ===== REASONS SECTION ===== */
+.reasons-section {
+  padding: 4rem;
+  background-color: var(--darker-bg);
+  text-align: center;
+}
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 2rem;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 2rem; /* Added padding for better mobile view */
+}
+
+.reason-card {
+  background-color: var(--dark-bg);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.reason-card:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.reason-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--netflix-red);
+}
+
+.reason-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.reason-description {
+  color: var(--gray-text);
+  line-height: 1.6;
+}
+
+/* ===== FAQ SECTION ===== */
+.faq-section {
+  padding: 4rem;
+  background-color: var(--darker-bg);
+}
+
+.faq-list {
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+.faq-item {
+  margin-bottom: 0.5rem;
+}
+
+.faq-question {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.faq-question:hover {
+  background-color: var(--card-hover);
+}
+
+.faq-answer {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  margin-top: 0.1rem;
+  display: none;
+}
+
+.faq-answer.show {
+  display: block;
+}
+
+/* ===== GET STARTED SECTION ===== */
+.get-started {
+  padding: 4rem;
+  background-color: var(--darker-bg);
+  text-align: center;
+  border-bottom: 0.5rem solid #222;
+}
+
+.get-started p {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 4rem;
+  background-color: var(--darker-bg);
+  color: var(--gray-text);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 2rem;
+  max-width: 70rem;
+  margin: 0 auto 3rem;
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 1rem;
+}
+
+.footer-links a {
+  color: var(--gray-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--light-text);
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid #333;
+}
+.language-selector{
+   padding: 0.5rem 1.25rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: var(--light-text);
+  border: 1px solid #333;
+  border-radius: 0.25rem;
+}
+
+/* ===== MEDIA QUERIES ===== */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.3rem;
+  }
+  
+  .trending-section,
+  .upcoming-section,
+  .reasons-section,
+  .faq-section,
+  .get-started,
+  .footer {
+    padding: 3rem 2rem;
+  }
+  
+  .skeleton-card {
+    flex: 0 0 calc(25% - 1rem); /* 4 cards per row */
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .signup-form {
+    flex-direction: column;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .skeleton-card {
+    flex: 0 0 calc(33.333% - 1rem); /* 3 cards per row */
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    padding: 1rem;
+  }
+  
+  .logo {
+    width: 7rem;
+  }
+  
+  .hero-content {
+    padding-top: 6rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .filter-controls {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .skeleton-card {
+    flex: 0 0 calc(50% - 1rem); /* 2 cards per row */
+  }
+}
+
+/* Animation for loading state */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}

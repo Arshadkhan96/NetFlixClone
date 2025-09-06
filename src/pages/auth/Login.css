@@ -1,0 +1,182 @@
+/* Background */
+.login-container {
+  background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.6) 60%,
+      rgba(0, 0, 0, 0.8) 100%
+    ),
+    url("../../netfliximg.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Login Form Box */
+.login-form {
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 60px 68px 40px;
+  width: 100%;
+  max-width: 550px;
+  min-width: 380px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+}
+
+.login-form h1 {
+  margin-bottom: 28px;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+/* Inputs */
+.login-form input {
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  background: #222;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  height: 60px;
+}
+
+.login-form input::placeholder {
+  color: #6c6c6c;
+}
+
+.login-form input:focus {
+  outline: none;
+  background: #454545;
+}
+
+/* Sign In Button */
+.signin-btn {
+  background-color: #e50914;
+  padding: 16px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 24px 0;
+  height: 50px;
+}
+
+.signin-btn:hover {
+  background-color: #f6121d;
+}
+
+/* Divider */
+.or {
+  text-align: center;
+  margin-bottom: 18px;
+  color: #b3b3b3;
+  font-size: 14px;
+  position: relative;
+}
+
+.or::before,
+.or::after {
+  content: "";
+  display: inline-block;
+  width: 40%;
+  height: 1px;
+  background: #333;
+  position: absolute;
+  top: 50%;
+}
+
+.or::before {
+  left: 0;
+}
+
+.or::after {
+  right: 0;
+}
+
+/* Sign-in Code Button */
+.signin-code {
+  background-color: transparent;
+  padding: 14px;
+  border: none;
+  color: #b3b3b3;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.signin-code:hover {
+  text-decoration: underline;
+}
+
+/* Links */
+.forgot-password {
+  color: #b3b3b3;
+  font-size: 14px;
+  text-decoration: none;
+  margin-bottom: 18px;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Remember Me */
+.remember-me {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.remember-me input {
+  margin-right: 5px;
+  width: 16px;
+  height: 16px;
+}
+
+.remember-me label {
+  font-size: 14px;
+  color: #b3b3b3;
+}
+
+/* New User */
+.new-user {
+  font-size: bold;
+  color: #737373;
+  margin-top: 40px;
+}
+
+.new-user a {
+  color: white;
+  text-decoration: none;
+}
+
+.new-user a:hover {
+  text-decoration: underline;
+}
+
+/* Recaptcha */
+.recaptcha-text {
+  font-size: 13px;
+  color: #8c8c8c;
+  margin-top: 20px;
+  line-height: 1.4;
+}
+
+.recaptcha-text a {
+  color: #0071eb;
+  text-decoration: none;
+}
+
+.recaptcha-text a:hover {
+  text-decoration: underline;
+}
